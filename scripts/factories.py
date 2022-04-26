@@ -19,13 +19,13 @@ class DriverFactory:
     def _setup(self):
         options = Options()
         options.headless = True
-        options.add_argument("--window-size=1920,1200")
+        # options.add_argument("--window-size=1920,1200")
         options.add_argument('--ignore-certificate-errors')
         options.add_argument("--log-level=3")
-        # options.add_argument("--test-type")
+        options.add_argument("--test-type")
 
-        # return webdriver.Chrome(options=options)
-        return webdriver.Chrome(options=options, executable_path="C:/agar.aio/scripts/chromedriver.exe")
+        return webdriver.Chrome(options=options)
+        # return webdriver.Chrome()
 
     # Generate agents
     def create(self):
@@ -52,3 +52,4 @@ class ServerFactory():
         curr_env["COMPOSE_PROJECT_NAME"] = f'agario-{port}'
 
         return subprocess.Popen(["docker-compose", "-f", "servers/gulp/docker-compose.yaml", "up", "--build"], env=curr_env, stdout=subprocess.DEVNULL).pid
+

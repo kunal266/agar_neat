@@ -92,7 +92,7 @@ def hough_circles(image):
     # Transform coordinates to center origin
     enemies = list(map(transform_origin, filtered_enemies))
     food = list(map(transform_origin, food))
-
+    print("bruh enemies and player found",player,enemies,food)
     return player, enemies, food
 
 def save_parsed_circles(image, resized_image, high_contrast_image, small_removed_image, player, enemies, food):

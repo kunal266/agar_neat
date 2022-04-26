@@ -27,7 +27,7 @@ NUM_SERVERS = int(sys.argv[3])
 CONT_TRAIN = len(sys.argv) == 5
 CHECKPOINT_FILE_NAME = None if (not CONT_TRAIN) else sys.argv[4]
 
-WINNER_FILE_NAME = "./checkpoints/4.20.2021/winner.pkl"
+WINNER_FILE_NAME = "winner.pkl"
 # WINNER_FILE_NAME = os.environ["WINNER_FILE_NAME"]
 CONFIG_FILE_NAME = "./scripts/config"
 NUM_RUNS = 50
@@ -95,7 +95,7 @@ def test():
     config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
                         neat.DefaultSpeciesSet, neat.DefaultStagnation,
                         CONFIG_FILE_NAME)
-    genome = pickle.load(open("./checkpoints/history/%s" % WINNER_FILE_NAME, "rb"))
+    genome = pickle.load(open("checkpoints_1/4.20.2021/%s" % WINNER_FILE_NAME, "rb"))
     net = neat.nn.FeedForwardNetwork.create(genome, config)
 
     scores = pd.DataFrame(columns=["checkpoint", "run", "score", "player"])
@@ -150,5 +150,5 @@ if __name__ == "__main__":
         train()
     else:
         print('Testing...')
-        # test()
-        basic()
+        test()
+        # basic()
